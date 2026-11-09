@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#d88ca8">
+  <meta name="description" content="Sasha Krabovich’s birthday roguelike. 50 floors, five bosses, one giant cake.">
+  <title>Sasha’s Cake Quest</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="masthead">
+      <div class="brand"><canvas id="brandCake" width="40" height="44" aria-hidden="true"></canvas><div><h1>SASHA’S <span>CAKE QUEST</span></h1><span class="version-tag">BIRTHDAY ’26</span></div></div>
+      <span class="best-record"><span data-icon="crown"></span><span id="bestText">BEST 00</span></span>
+    </header>
+    <section class="game-frame" id="gameFrame" aria-label="Sasha’s Cake Quest game">
+      <div class="game-toolbar">
+        <div class="floor-label"><span data-icon="stairs"></span><span id="floorLabel">FLOOR — / 50</span></div>
+        <div class="header-actions">
+          <button id="musicButton" class="icon-button" aria-pressed="true" aria-label="Mute music" title="Music · starts when you play"><span data-icon="music"></span></button>
+          <button id="soundButton" class="icon-button" aria-pressed="true" aria-label="Mute sound effects" title="Sound effects"><span data-icon="sound"></span></button>
+          <span class="toolbar-divider"></span>
+          <button id="helpButton" class="icon-button" aria-label="How to play" title="Controls"><span data-icon="help"></span></button>
+          <button id="pauseButton" class="icon-button" aria-label="Pause game" title="Pause · Esc"><span data-icon="pause"></span></button>
+          <button id="fullscreenButton" class="icon-button" aria-label="Enter fullscreen" aria-pressed="false" title="Fullscreen · F"><span data-icon="fullscreen"></span></button>
+        </div>
+      </div>
+      <div class="arena-wrap" id="arenaWrap">
+        <canvas id="game" width="960" height="600" tabindex="0" aria-label="Game arena. WASD or arrows to move. J light, K heavy, L special. F fullscreen. Escape pauses."></canvas>
+        <div class="arena-hud paper-board" id="arenaHud" aria-label="Sasha’s health and stats">
+          <div class="profile-top"><div class="portrait-frame" id="portraitFrame"><canvas id="portrait" width="80" height="80" role="img" aria-label="Sasha smiling"></canvas><span id="emotionBadge" class="emotion-badge" data-icon="heart"></span></div><div class="profile-vitals"><div class="profile-name">Sasha Krabovich <span id="emotionLabel">Birthday boy</span></div><div class="vital health" id="hpBar"><span data-icon="heart"></span><div class="meter"><div id="hpFill"></div></div><b id="hpText">— / —</b></div><div class="vital mana"><span data-icon="mana"></span><div class="meter"><div id="manaFill"></div></div><b id="manaText">— / 100</b></div></div></div>
+          <div id="statsList" class="stats-list" aria-label="Run stats"></div>
+        </div>
+        <div class="floor-board paper-board"><span data-icon="enemy"></span><b id="enemyLabel">5 bosses</b></div>
+        <div class="boss-hud" id="bossHud" hidden><span id="bossName"></span><div class="meter"><div id="bossFill"></div></div></div>
+        <div class="overlay" id="overlay"></div>
+        <div class="toast" id="toast" role="status"></div>
+        <div class="combat-ui" id="touchControls">
+          <div class="dpad"><button data-move="up" aria-label="Move up">▲</button><button data-move="left" aria-label="Move left">◀</button><button data-move="down" aria-label="Move down">▼</button><button data-move="right" aria-label="Move right">▶</button></div>
+          <div class="attack-dock">
+            <button class="attack-button light-attack" data-attack="light" aria-label="Light attack · J"><span data-icon="sword"></span><span class="attack-name">Light</span><kbd>J</kbd><i class="cooldown-fill"></i></button>
+            <button class="attack-button heavy-attack" data-attack="heavy" aria-label="Heavy attack · K"><span data-icon="hammer"></span><span class="attack-name">Heavy</span><kbd>K</kbd><i class="cooldown-fill"></i></button>
+            <button class="attack-button special-attack" id="specialButton" data-attack="special" aria-label="Special attack · L · 40 mana"><span data-icon="burst"></span><span class="attack-name">Burst</span><kbd>L</kbd><small id="specialCost">40<span data-icon="mana"></span></small><i class="cooldown-fill"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="game-bottom"><div class="run-info"><span data-icon="pin"></span><span id="statusLabel">Birthday party</span><span id="runNumber" hidden></span><span id="seedLabel" hidden></span></div><div class="journey-board"><span id="progressText">0 / 50</span><div class="journey" id="journey" aria-label="Floor progress"></div><span data-icon="cake"></span></div></div>
+    </section>
+    <footer class="control-strip"><span><span data-icon="move"></span><kbd>WASD</kbd> / arrows</span><span><span data-icon="sword"></span><kbd>J</kbd> light</span><span><span data-icon="hammer"></span><kbd>K</kbd> heavy</span><span><span data-icon="burst"></span><kbd>L</kbd> burst</span><span><span data-icon="fullscreen"></span><kbd>F</kbd> fullscreen</span><span><kbd>ESC</kbd> pause</span></footer>
+  </main>
+  <audio id="bgMusic" src="./assets/Sassssha.mp3" loop preload="metadata"></audio>
+  <script src="./game.js"></script>
+</body>
+</html>
